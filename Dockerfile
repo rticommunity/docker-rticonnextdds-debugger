@@ -21,6 +21,7 @@ RUN apt-get update && apt-get install -y \
     build-essential \
     curl \
     dnsutils \
+    git \
     iperf \
     iproute2 \
     iputils-* \
@@ -33,7 +34,8 @@ RUN apt-get update && apt-get install -y \
     tcpflow \
     traceroute \
     vim \
-    wget
+    wget \
+    zip
 
 # Install RTI Logparser
 RUN git clone https://github.com/rticommunity/rticonnextdds-logparser.git
