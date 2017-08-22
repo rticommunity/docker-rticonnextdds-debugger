@@ -59,6 +59,15 @@ These packages are:
 
 ## How to use this Docker image
 
-The idea of this Docker image is to provide you with a mechanism to debug issues that can made your system miscommunicate (mainly network issues). So, the proper way to use this Docker image is to create a Docker container and open a terminal on it. For example, you can use the following command:
+The idea of this Docker image is to provide you with a mechanism to debug issues that can made your system miscommunicate (mainly network issues).
 
-    $ docker run --network=<Your network> -v <Path to your Connext DDS application>:/<Mountpoint>  --name debugger -ti rti-docker-debugger:latest /bin/bash
+### Build the image
+First, you need to clone this repository and build the image. When the clone finish, you can move to the root folder of the repository and run:
+
+``$ docker build -t rtidebugger .``
+
+### Run the image
+
+The proper way to use this Docker image is to create a Docker container and open a terminal on it. For example, you can use the following command:
+
+    $ docker run --network=<Your network> -v <Path to your Connext DDS application>:/<Mountpoint>  --name debugger -ti rtidebugger:latest /bin/bash
