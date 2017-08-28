@@ -1,17 +1,25 @@
 # RTI Docker Debugger
 
-This Docker image helps you to create a Docker container with some interesting tools to debug your system.
+This Docker image helps you to create a Docker container with some interesting
+tools to debug your system.
 
 ### License
-All programs and components within this image are the property of their respective owners under the license associated with such component in the installation.  Please refer to the documentation associated with each program or component and/or the Licenses.md file included in the Docker image.
+All programs and components within this image are the property of their
+respective owners under the license associated with such component in the
+installation.  Please refer to the documentation associated with each program
+or component and/or the [Licenses.md](Licenses.md) file included in the
+Docker image.
 
 ## Included tools
 
 ### ddsping
 
-This Docker image includes a small tool call "ddsping", inspired by RTI DDS Ping (shipped with RTI Connext DDS). It has been developed with [RTI Connector for Connext DDS](https://github.com/rticommunity/rticonnextdds-connector). This small tool allows you to know if the DDS traffic works properly in your system. You can call it directly typing `ddsping`.
+This small tool was inspired by RTI DDS Ping (shipped with RTI Connext DDS).
+It has been developed using [RTI Connector for Connext DDS](https://github.com/rticommunity/rticonnextdds-connector). ``ddsping``
+allows you to know if the DDS traffic works properly on your
+system. You can execute it directly typing ``ddsping``.
 
-```bash
+```shell
 optional arguments:
   -h, --help            show this help message and exit
   -w, --writer          send ping messages
@@ -22,11 +30,18 @@ optional arguments:
 
 ### RTI Log Parser
 
-[RTI Log Parser](https://github.com/rticommunity/rticonnextdds-logparser) is also incorporated to make easier the debugging of your RTI Connext DDS and RTI Micro applications. You can call this tool directly from any directory running `rtilogparser [options]`. All the documentation about this tool is available at the [oficial repository of RTI Log Parser](https://github.com/rticommunity/rticonnextdds-logparser).
+[RTI Log Parser](https://github.com/rticommunity/rticonnextdds-logparser)
+is also incorporated to make easier to debug your RTI Connext DDS and RTI
+Micro applications. You can call this tool directly from any directory 
+running ``rtilogparser [options]``. All the documentation about this tool is
+available in the 
+[oficial repository of RTI Log Parser](https://github.com/rticommunity/rticonnextdds-logparser).
 
 ### Other applications included in this Docker image
 
-Also, this Docker image includes some useful Linux packages. These packages can are not in the base image of Ubuntu and we think the y can help you to detect issues in your system.
+Also, this Docker image includes some useful Linux packages.
+These packages are not in the base image of Ubuntu. Now, they are included on
+this Docker image to help you to debug issues in your system.
 
 These packages are:
 
@@ -59,15 +74,22 @@ These packages are:
 
 ## How to use this Docker image
 
-The idea of this Docker image is to provide you with a mechanism to debug issues that can made your system miscommunicate (mainly network issues).
+The idea of this Docker image is to provide you with a mechanism to debug 
+issues that can made your system miscommunicate (mainly network issues).
 
 ### Build the image
-First, you need to clone this repository and build the image. When the clone finish, you can move to the root folder of the repository and run:
+First, you need to clone this repository and build the image.
+When you finish to download the repository, you can go to it and run:
 
 ``$ docker build -t rtidebugger .``
 
 ### Run the image
 
-The proper way to use this Docker image is to create a Docker container and open a terminal on it. For example, you can use the following command:
+You can run a ``bash`` process on your Docker container and interact with it. 
+You can do it with the following command:
 
-    $ docker run --network=<Your network> -v <Path to your Connext DDS application>:/<Mountpoint>  --name debugger -ti rtidebugger:latest /bin/bash
+    $ docker run --network=host --name debugger -ti rtidebugger:latest /bin/bash
+
+Also, you can run the different installed packages directly from the run command:
+
+    $ docker run --network=bridge --name debugger -ti rtidebugger:latest ping rti.com
