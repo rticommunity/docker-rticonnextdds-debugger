@@ -41,7 +41,7 @@ def writer():
     print("Running writer...")
 
     connector = rti.Connector("MyParticipantLibrary::Zero",
-                              "/bin/PingConfiguration.xml")
+                              "/usr/local/bin/PingConfiguration.xml")
 
     outputDDS = connector.getOutput("MyPublisher::PingWriter")
 
