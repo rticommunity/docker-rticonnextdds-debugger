@@ -17,7 +17,7 @@ LABEL "com.example.vendor"="Real-Time Innovations" \
     RTI Connext DDS and RTI Micro."
 
 # Install some packages
-RUN apt-get update && apt-get install -y \
+RUN apt-get update && apt-get install -y --no-install-recommends \
         build-essential \
         git \
         zip \
@@ -54,7 +54,7 @@ RUN git clone --recurse-submodules \
 
 # Install RTI Logparser
 RUN git clone https://github.com/rticommunity/rticonnextdds-logparser.git
-WORKDIR rticonnextdds-logparser
+WORKDIR /rticonnextdds-logparser
 RUN ./create_redist.sh && \
     cp /rticonnextdds-logparser/rtilogparser /usr/local/bin/
 
